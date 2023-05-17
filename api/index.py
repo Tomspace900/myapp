@@ -1,15 +1,17 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 
 app = Flask(__name__)
 
 stored_data = []
 
 
+# Main page
 @app.route("/")
 def hello():
-    return "Hello, world !"
+    return render_template("index.html")
 
 
+# Webhook endpoint
 @app.route("/webhook", methods=["POST"])
 def handleWebhook():
     data = request.get_json()
@@ -17,6 +19,7 @@ def handleWebhook():
     return "OK"
 
 
+# Data view endpoint
 @app.route("/data")
 def get_data():
     return jsonify(stored_data)
