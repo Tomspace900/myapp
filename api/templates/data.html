@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Data Page</title>
+		<style>
+			table {
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			th,
+			td {
+				border: 1px solid black;
+				padding: 8px;
+				text-align: left;
+			}
+
+			th {
+				background-color: #f2f2f2;
+			}
+		</style>
+		<script>
+			window.onload = function () {
+				fetch('/data')
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data);
+					})
+					.catch((error) => {
+						console.error("Une erreur s'est produite:", error);
+					});
+			};
+		</script>
+	</head>
+	<body>
+		<h1>Data Page</h1>
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Question</th>
+				<th>Response</th>
+			</tr>
+			{% for entry in data %}
+			<tr>
+				<td>{{ entry['createdAt'] }}</td>
+				<td>
+					<ul>
+						{% for field in entry['data']['fields'] %}
+						<li>{{ field['label'] }}</li>
+						{% endfor %}
+					</ul>
+				</td>
+				<td>
+					<ul>
+						{% for field in entry['data']['fields'] %}
+						<li>
+							{% if field['type'] == 'MULTIPLE_CHOICE' %} {% for option in field['options'] %} {% if option['id'] ==
+							field['value'] %} {{ option['text'] }} {% endif %} {% endfor %} {% else %} {{ field['value'] }} {%
+							endif %}
+						</li>
+						{% endfor %}
+					</ul>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

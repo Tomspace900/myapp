@@ -22,7 +22,8 @@ def handleWebhook():
 # Data view endpoint
 @app.route("/data")
 def get_data():
-    return jsonify(stored_data)
+    print(stored_data)
+    return render_template("data.html", data=stored_data)
 
 
 if __name__ == "__main__":
