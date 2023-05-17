@@ -19,10 +19,11 @@ def handleWebhook():
     return "OK"
 
 
-# Data view endpoint
+# Data visualization page
 @app.route("/data")
 def get_data():
     print(stored_data)
+    # return jsonify(stored_data)
     return render_template("data.html", data=stored_data)
 
 
