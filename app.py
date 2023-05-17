@@ -1,30 +1,22 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
 stored_data = []
 
-
 @app.route("/")
 def hello():
-    data_string = "<br>".join(str(data) for data in stored_data)
-    return f"Hello, world !<br><br>Stored Data:<br>{data_string}"
-
+    return "Hello, world!"
 
 @app.route("/webhook", methods=["POST"])
 def handleWebhook():
-    # get data
     data = request.get_json()
-
-    # store data
     stored_data.append(data)
-
-    # display data in console
-    print(data)
-
     return "OK"
 
+@app.route("/data")
+def get_data():
+    return jsonify(stored_data)
 
 if __name__ == "__main__":
     app.run()
