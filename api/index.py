@@ -16,7 +16,7 @@ def hello():
 def handleWebhook():
     data = request.get_json()
     stored_data.append(data)
-    return "OK"
+    return "OK", 200
 
 
 # Data visualization page
@@ -25,6 +25,17 @@ def get_data():
     print(stored_data)
     # return jsonify(stored_data)
     return render_template("data.html", data=stored_data)
+
+
+# Send data to the database
+
+# Get data from the database
+
+
+# Send data to the frontend (Tableau / Dataiku)
+@app.route("/get-data", methods=["GET"])
+def send_data():
+    return jsonify(stored_data)
 
 
 if __name__ == "__main__":
