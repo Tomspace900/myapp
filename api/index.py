@@ -1,13 +1,16 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for
+from api.controllers.form_controller import form
 
 app = Flask(__name__)
+
+app.register_blueprint(form, url_prefix="/form")
 
 stored_data = []
 
 
 # Main page
 @app.route("/")
-def hello():
+def home():
     return render_template("index.html")
 
 
@@ -25,11 +28,6 @@ def get_data():
     print(stored_data)
     # return jsonify(stored_data)
     return render_template("data.html", data=stored_data)
-
-
-# Send data to the database
-
-# Get data from the database
 
 
 # Send data to the frontend (Tableau / Dataiku)
