@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 from controllers.form_controller import form
 from controllers.webhook_controller import webhook
 
+
 app = Flask(__name__)
 
 app.register_blueprint(form, url_prefix="/form")
