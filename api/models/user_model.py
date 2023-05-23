@@ -1,14 +1,15 @@
-from api.configs.db_config import db
+from sqlalchemy import Column, Integer, String, Boolean
+from configs.db_config import Base
 
 
-class User(db.Model):
+class User(Base):
     __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
-    tally_id = db.Column(db.Integer)
-    first_name = db.Column(db.String(255))
-    last_name = db.Column(db.String(255))
-    isAdmin = db.Column(db.Boolean)
+    id = Column(Integer, primary_key=True)
+    tally_id = Column(Integer)
+    first_name = Column(String(255))
+    last_name = Column(String(255))
+    isAdmin = Column(Boolean)
 
     def __init__(self, tally_id, first_name, last_name, isAdmin):
         self.tally_id = tally_id

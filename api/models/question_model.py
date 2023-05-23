@@ -1,15 +1,16 @@
-from api.configs.db_config import db
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from configs.db_config import Base
 
 
-class Question(db.Model):
+class Question(Base):
     __tablename__ = "questions"
 
-    id = db.Column(db.Integer, primary_key=True)
-    tally_id = db.Column(db.Integer)
-    questionnaire_id = db.Column(db.Integer, db.ForeignKey("questionnaire.id"))
-    text = db.Column(db.String(255))
-    type = db.Column(db.String(50))
-    is_mandatory = db.Column(db.Boolean)
+    id = Column(Integer, primary_key=True)
+    tally_id = Column(Integer)
+    questionnaire_id = Column(Integer, ForeignKey("questionnaire.id"))
+    text = Column(String(255))
+    type = Column(String(50))
+    is_mandatory = Column(Boolean)
 
     def __init__(self, tally_id, questionnaire_id, type, text, is_mandatory):
         self.tally_id = tally_id

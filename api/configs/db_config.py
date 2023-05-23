@@ -1,11 +1,11 @@
-# import mysql.connector as mysql
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-db = []
 
 # ! connection à la base de données mysql
-# db = mysql.connect(
-#     host="localhost",
-#     user="your_username",
-#     password="your_password",
-#     database="your_database",
-# )
+db = create_engine("mysql+mysqlconnector://root:password@localhost:3306/test")
+
+Session = sessionmaker(bind=db)
+session = Session()
+
+Base = declarative_base()

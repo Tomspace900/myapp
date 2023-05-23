@@ -1,14 +1,14 @@
-from api.configs.db_config import db
-from api.models.form_model import Questionnaire
-from api.services.user_service import create_user
-from api.services.response_service import create_response
-from api.services.question_service import create_question, get_question
-from api.services.values_service import create_value
+from configs.db_config import session
+from models.form_model import Questionnaire
+from services.user_service import create_user
+from services.response_service import create_response
+from services.question_service import create_question, get_question
+from services.values_service import create_value
 
 
 def create_form(tally_id, form_name, questions):
     # Check if questionnaire already exists
-    existing_form = Questionnaire.query.filter_by(tally_id=tally_id).first()
+    existing_form = session.query(Questionnaire).filter_by(tally_id=tally_id).first()
     if existing_form:
         return existing_form
 
@@ -19,8 +19,8 @@ def create_form(tally_id, form_name, questions):
         create_question(questionnaire.id, question)
 
     # Add questionnaire to database
-    db.session.add(questionnaire)
-    db.session.commit()
+    session.add(questionnaire)
+    session.commit()
     return questionnaire
 
 
@@ -66,7 +66,7 @@ def save_form(data):
 
 
 def get_form(tally_id):
-    form = Questionnaire.query.filter_by(tally_id=tally_id).first()
+    form = session.query(Questionnaire).filter_by(tally_id=tally_id).first()
     if not form:
         return None
 
@@ -74,7 +74,7 @@ def get_form(tally_id):
 
 
 def get_forms():
-    questionnaires = Questionnaire.query.all()
+    questionnaires = session.query(Questionnaire).all()
     if not questionnaires:
         return None
 

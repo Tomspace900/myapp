@@ -1,13 +1,14 @@
-from api.configs.db_config import db
+from sqlalchemy import Column, Integer, String, ForeignKey
+from configs.db_config import Base
 
 
-class Value(db.Model):
+class Value(Base):
     __tablename__ = "values"
 
-    id = db.Column(db.Integer, primary_key=True)
-    response_id = db.Column(db.Integer, db.ForeignKey("response.id"), primary_key=True)
-    question_id = db.Column(db.Integer, db.ForeignKey("question.id"), primary_key=True)
-    value = db.Column(db.String(255))
+    id = Column(Integer, primary_key=True)
+    response_id = Column(Integer, ForeignKey("response.id"), primary_key=True)
+    question_id = Column(Integer, ForeignKey("question.id"), primary_key=True)
+    value = Column(String(255))
 
     def __init__(self, response_id, question_id, value):
         self.response_id = response_id

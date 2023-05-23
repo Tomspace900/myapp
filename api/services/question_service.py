@@ -1,5 +1,5 @@
-from api.configs.db_config import db
-from api.models.question_model import Question
+from configs.db_config import session
+from models.question_model import Question
 
 
 def create_question(questionnaire_id, question):
@@ -17,14 +17,14 @@ def create_question(questionnaire_id, question):
     )
 
     # Add question to database
-    db.session.add(question)
-    db.session.commit()
+    session.add(question)
+    session.commit()
 
     return question
 
 
 def get_question(tally_id):
-    question = Question.query.filter_by(tally_id=tally_id).first()
+    question = session.query(Question).filter_by(tally_id=tally_id).first()
     if not question:
         return None
 

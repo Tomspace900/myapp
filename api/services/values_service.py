@@ -1,5 +1,5 @@
-from api.configs.db_config import db
-from api.models.values_model import Value
+from configs.db_config import session
+from models.values_model import Value
 
 
 def create_value(tally_id, response_id, question_id, value):
@@ -11,13 +11,13 @@ def create_value(tally_id, response_id, question_id, value):
     )
 
     # Add value to database
-    db.session.add(value)
-    db.session.commit()
+    session.add(value)
+    session.commit()
     return value
 
 
 def get_values_by_response_id(response_id):
-    values = Value.query.filter_by(response_id=response_id).all()
+    values = session.query(Value).filter_by(response_id=response_id).all()
     if not values:
         return None
 
@@ -25,7 +25,7 @@ def get_values_by_response_id(response_id):
 
 
 def get_values_by_question_id(question_id):
-    values = Value.query.filter_by(question_id=question_id).all()
+    values = session.query(Value).filter_by(question_id=question_id).all()
     if not values:
         return None
 
@@ -33,9 +33,11 @@ def get_values_by_question_id(question_id):
 
 
 def get_value(response_id, question_id):
-    value = Value.query.filter_by(
-        response_id=response_id, question_id=question_id
-    ).first()
+    value = (
+        session.query(Value)
+        .filter_by(response_id=response_id, question_id=question_id)
+        .first()
+    )
     if not value:
         return None
 

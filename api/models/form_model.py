@@ -1,12 +1,13 @@
-from api.configs.db_config import db
+from sqlalchemy import Column, Integer, String
+from configs.db_config import Base
 
 
-class Questionnaire(db.Model):
+class Questionnaire(Base):
     __tablename__ = "questionnaires"
 
-    id = db.Column(db.Integer, primary_key=True)
-    tally_id = db.Column(db.Integer)
-    name = db.Column(db.String(255))
+    id = Column(Integer, primary_key=True)
+    tally_id = Column(Integer)
+    name = Column(String(255))
 
     def __init__(self, tally_id, name):
         self.tally_id = tally_id

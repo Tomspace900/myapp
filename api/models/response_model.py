@@ -1,14 +1,15 @@
-from api.configs.db_config import db
+from sqlalchemy import Column, Integer, DateTime, ForeignKey
+from configs.db_config import Base
 
 
-class Response(db.Model):
+class Response(Base):
     __tablename__ = "responses"
 
-    id = db.Column(db.Integer, primary_key=True)
-    tally_id = db.Column(db.Integer)
-    questionnaire_id = db.Column(db.Integer, db.ForeignKey("questionnaire.id"))
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    submission_date = db.Column(db.DateTime)
+    id = Column(Integer, primary_key=True)
+    tally_id = Column(Integer)
+    questionnaire_id = Column(Integer, ForeignKey("questionnaire.id"))
+    user_id = Column(Integer, ForeignKey("user.id"))
+    submission_date = Column(DateTime)
 
     def __init__(self, tally_id, questionnaire_id, user_id, submission_date):
         self.tally_id = tally_id
