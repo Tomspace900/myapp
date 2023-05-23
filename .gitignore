@@ -126,5 +126,12 @@ dmypy.json
 # vercel
 .vercel
 
+# vscode
 bin/
 .vscode/
+
+# macOS
+.DS_Store
+
+# env virtuel
+pyvenv.cfg
