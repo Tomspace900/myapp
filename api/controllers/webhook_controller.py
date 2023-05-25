@@ -4,7 +4,7 @@ from services.form_service import save_form
 webhook = Blueprint("webhook", __name__)
 
 
-# Webhook endpoint to save data : https://my-tally.thomasgendron.fr/form/webhook
+# Webhook endpoint to save data : https://my-tally.thomasgendron.fr/form (POST)
 @webhook.route("/", methods=["POST"])
 def handleWebhook():
     data = request.get_json()

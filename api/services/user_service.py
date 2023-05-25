@@ -1,18 +1,21 @@
-from configs.db_config import session
+from configs.db_config import db
 from models.user_model import User
 
 
 def create_user(tally_id, first_name, last_name, isAdmin):
     # Check if user already exists
-    existing_user = session.query(User).filter_by(tally_id=tally_id).first()
+    existing_user = db.session.query(User).filter_by(tally_id_user=tally_id).first()
     if existing_user:
         return existing_user
 
     user = User(
-        tally_id=tally_id, first_name=first_name, last_name=last_name, isAdmin=isAdmin
+        tally_id=tally_id,
+        firstname=first_name,
+        lastname=last_name,
+        is_admin=isAdmin,
     )
 
     # Add user to database
-    session.add(user)
-    session.commit()
+    db.session.add(user)
+    db.session.commit()
     return user

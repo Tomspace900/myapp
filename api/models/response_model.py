@@ -1,18 +1,28 @@
-from sqlalchemy import Column, Integer, DateTime, ForeignKey
-from configs.db_config import Base
+from configs.db_config import db
 
 
-class Response(Base):
-    __tablename__ = "responses"
+class Response(db.Model):
+    __tablename__ = "Responses"
 
-    id = Column(Integer, primary_key=True)
-    tally_id = Column(Integer)
-    questionnaire_id = Column(Integer, ForeignKey("questionnaire.id"))
-    user_id = Column(Integer, ForeignKey("user.id"))
-    submission_date = Column(DateTime)
+    id_response = db.Column(db.Integer, primary_key=True)
+    tally_id_responses = db.Column(db.Integer)
+    id_questionnaire = db.Column(
+        db.Integer, db.ForeignKey("Questionnaires.id_questionnaire"), nullable=False
+    )
+    id_user = db.Column(db.Integer, db.ForeignKey("Users.id_user"), nullable=False)
+    submission_date = db.Column(db.DateTime)
 
     def __init__(self, tally_id, questionnaire_id, user_id, submission_date):
-        self.tally_id = tally_id
-        self.questionnaire_id = questionnaire_id
-        self.user_id = user_id
+        self.tally_id_responses = tally_id
+        self.id_questionnaire = questionnaire_id
+        self.id_user = user_id
         self.submission_date = submission_date
+
+
+@property
+def id(self):
+    return self.id_response
+
+
+def tally_id(self):
+    return self.tally_id_responses

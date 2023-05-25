@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from flask_sqlalchemy import SQLAlchemy
+
 
 # load environment variables
 load_dotenv()
@@ -12,16 +12,9 @@ database = os.getenv("DATABASE_NAME")
 host = os.getenv("DATABASE_HOST")
 port = os.getenv("DATABASE_PORT")
 
-print(username, password, database, host, port)
+print("mysql ids :", username, password, database, host, port)
 
-# connect to mysql database
-db = create_engine(
-    f"mysql+mysqlconnector://{username}:{password}@{host}:{port}/{database}"
-)
 
-# create session for queries
-Session = sessionmaker(bind=db)
-session = Session()
+db = SQLAlchemy()
 
-# create base class for models
-Base = declarative_base()
+database_url = f"mysql+mysqlconnector://{username}:{password}@{host}:{port}/{database}"

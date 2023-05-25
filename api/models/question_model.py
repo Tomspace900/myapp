@@ -1,20 +1,51 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
-from configs.db_config import Base
+from configs.db_config import db
 
 
-class Question(Base):
-    __tablename__ = "questions"
+class Question(db.Model):
+    __tablename__ = "Questions"
 
-    id = Column(Integer, primary_key=True)
-    tally_id = Column(Integer)
-    questionnaire_id = Column(Integer, ForeignKey("questionnaire.id"))
-    text = Column(String(255))
-    type = Column(String(50))
-    is_mandatory = Column(Boolean)
+    id_question = db.Column(db.Integer, primary_key=True)
+    tally_id_question = db.Column(db.Integer)
+    questionnaire_id = db.Column(
+        db.Integer, db.ForeignKey("Questionnaires.id_questionnaire"), nullable=False
+    )
+    label_question = db.Column(db.String(1000))
+    type_question = db.Column(db.db.String(50))
+    is_mandatory = db.Column(db.Boolean)
 
-    def __init__(self, tally_id, questionnaire_id, type, text, is_mandatory):
-        self.tally_id = tally_id
+    # constructor
+    def __init__(
+        self,
+        tally_id,
+        questionnaire_id,
+        type,
+        label,
+        is_mandatory,
+    ):
+        self.tally_id_question = tally_id
         self.questionnaire_id = questionnaire_id
-        self.text = text
-        self.type = type
+        self.label_question = label
+        self.type_question = type
         self.is_mandatory = is_mandatory
+
+
+# alias
+@property
+def id(self):
+    return self.id_question
+
+
+def tally_id(self):
+    return self.tally_id_question
+
+
+def questionnaire_id(self):
+    return self.questionnaire_id
+
+
+def label(self):
+    return self.label_question
+
+
+def type(self):
+    return self.type_question
