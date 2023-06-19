@@ -14,12 +14,3 @@ class HaveAccess(db.Model):
         self.id_questionnaire = id_questionnaire
         self.id_user = id_user
 
-
-# alias
-@property
-def id_questionnaire(self):
-    return self.id_questionnaire
-
-
-def id_user(self):
-    return self.id_user

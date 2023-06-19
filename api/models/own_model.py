@@ -15,13 +15,3 @@ class Own(db.Model):
     def __init__(self, id_questionnaire, id_question):
         self.id_questionnaire = id_questionnaire
         self.id_question = id_question
-
-
-# alias
-@property
-def id_questionnaire(self):
-    return self.id_questionnaire
-
-
-def id_question(self):
-    return self.id_question

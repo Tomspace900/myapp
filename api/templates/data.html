@@ -2,58 +2,74 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>MY - Data Page</title>
+		<meta name="viewport" content="width=device-width" />
+		<title>Database datas</title>
 		<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+			}
+
+			.button-container {
+				margin-bottom: 10px;
+			}
+
+			.button-container a {
+				margin-right: 10px;
+			}
+
+			button {
+				padding: 8px 16px;
+				font-size: 16px;
+				border: none;
+				border-radius: 4px;
+				background-color: #4caf50;
+				color: #fff;
+				cursor: pointer;
+			}
+
+			button:hover {
+				background-color: #45a049;
+			}
+		</style>
 		<style>
 			table {
 				border-collapse: collapse;
 				width: 100%;
+				margin-bottom: 20px;
 			}
 
 			th,
 			td {
-				border: 1px solid black;
 				padding: 8px;
 				text-align: left;
+				border-bottom: 1px solid #ddd;
 			}
 
 			th {
 				background-color: #f2f2f2;
+				font-weight: bold;
 			}
 		</style>
 	</head>
 	<body>
-		<h1>Data Page</h1>
+		<h1>Database datas</h1>
 		<table>
 			<tr>
-				<th>Date</th>
-				<th>Question</th>
-				<th>Response</th>
+				{% for header in headers %}
+				<th>{{ header }}</th>
+				{% endfor %}
 			</tr>
-			{% for entry in data %}
+			{% for line in data %}
 			<tr>
-				<td>{{ entry['createdAt'] }}</td>
-				<td>
-					<ul>
-						{% for field in entry['data']['fields'] %}
-						<li>{{ field['label'] }}</li>
-						{% endfor %}
-					</ul>
-				</td>
-				<td>
-					<ul>
-						{% for field in entry['data']['fields'] %}
-						<li>
-							{% if field['type'] == 'MULTIPLE_CHOICE' %} {% for option in field['options'] %} {% if option['id'] ==
-							field['value'] %} {{ option['text'] }} {% endif %} {% endfor %} {% else %} {{ field['value'] }} {%
-							endif %}
-						</li>
-						{% endfor %}
-					</ul>
-				</td>
+				{% for item in line %}
+				<td>{{ item }}</td>
+				{% endfor %}
 			</tr>
 			{% endfor %}
 		</table>
+		<a href="{{ url_for('form.dl_csv_data') }}">
+			<button>Download Data</button>
+		</a>
 	</body>
 </html>

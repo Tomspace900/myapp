@@ -4,31 +4,16 @@ from configs.db_config import db
 class User(db.Model):
     __tablename__ = "Users"
 
-    id_user = db.Column(db.Integer, primary_key=True)
-    tally_id_user = db.Column(db.Integer)
+    id_user = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    tally_id_user = db.Column(db.String(6))
     firstname_user = db.Column(db.String(50))
     lastname_user = db.Column(db.String(50))
+    email_user = db.Column(db.String(100))
+    phone_user = db.Column(db.String(10))
     is_admin = db.Column(db.Boolean)
+    username_user = db.Column(db.String(100), unique=True, nullable=False)
+    password_user = db.Column(db.String(100))
 
-    def __init__(self, tally_id, firstname, lastname, is_admin):
+    def __init__(self, tally_id, is_admin):
         self.tally_id_user = tally_id
-        self.firstname_user = firstname
-        self.lastname_user = lastname
         self.is_admin = is_admin
-
-
-@property
-def id(self):
-    return self.id_user
-
-
-def tally_id(self):
-    return self.tally_id_user
-
-
-def firstname(self):
-    return self.firstname_user
-
-
-def lastname(self):
-    return self.lastname_user

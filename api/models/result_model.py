@@ -1,7 +1,7 @@
 from configs.db_config import db
 
 
-class Value(db.Model):
+class Result(db.Model):
     __tablename__ = "results"
 
     id_question = db.Column(
@@ -18,16 +18,3 @@ class Value(db.Model):
         self.id_response = id_response
         self.results = results
 
-
-# alias
-@property
-def id_question(self):
-    return self.id_question
-
-
-def id_response(self):
-    return self.id_response
-
-
-def value(self):
-    return self.results

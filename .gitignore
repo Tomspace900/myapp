@@ -135,3 +135,6 @@ bin/
 
 # env virtuel
 pyvenv.cfg
+
+# data
+data/

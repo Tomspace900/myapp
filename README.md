@@ -18,13 +18,13 @@ Backend made with Flask for the acquisition, manipulation and storage of data fr
 1. Clone the repo :
 
 ```bash
-git clone https://github.com/Tomspace900/myapp
+git clone https://github.com/Jeanne-Des/MasterProject
 ```
 
 2. Go to directory & create virtual environment
 
 ```bash
-cd back
+cd MasterProject/back
 ```
 
 ```bash
@@ -51,7 +51,21 @@ myenv\Scripts\activate
 pip3 install -r requirements.txt
 ```
 
-5. Start the app
+5. Create a `.env` file in `back/` folder :
+
+```bash
+DATABASE_NAME=[name]
+DATABASE_USER=[user]
+DATABASE_PASSWORD=[password]
+DATABASE_HOST=[host]
+DATABASE_PORT=[port]
+
+CSV_PATH='data/data.csv'
+```
+
+Replace the [variables] with your own values
+
+6. Start the app
 
 ```bash
 python3 api/index.py
