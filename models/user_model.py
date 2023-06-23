@@ -2,7 +2,7 @@ from configs.db_config import db
 
 
 class User(db.Model):
-    __tablename__ = "Users"
+    __tablename__ = "users"
 
     id_user = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tally_id_user = db.Column(db.String(6))

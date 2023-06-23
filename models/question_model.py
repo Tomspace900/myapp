@@ -2,7 +2,7 @@ from configs.db_config import db
 
 
 class Question(db.Model):
-    __tablename__ = "Questions"
+    __tablename__ = "questions"
 
     id_question = db.Column(db.Integer, primary_key=True)
     tally_id_question = db.Column(db.String(6))
@@ -22,4 +22,3 @@ class Question(db.Model):
         self.label_question = label
         self.type_question = type
         self.is_mandatory = is_mandatory
-

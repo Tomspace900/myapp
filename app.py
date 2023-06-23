@@ -6,6 +6,7 @@ from models.user_model import User
 from hashlib import sha256
 import secrets
 
+
 # initialize the flask app
 app = Flask(__name__)
 

@@ -1,6 +1,7 @@
 from configs.db_config import db
 from models.own_model import Own
 
+
 def create_own(questionnaire_id, question_id):
     own = Own(questionnaire_id, question_id)
 
@@ -9,6 +10,7 @@ def create_own(questionnaire_id, question_id):
     db.session.commit()
 
     return own
+
 
 def get_own(questionnaire_id, question_id):
     own = (

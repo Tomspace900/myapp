@@ -5,10 +5,10 @@ class Own(db.Model):
     __tablename__ = "own"
 
     id_questionnaire = db.Column(
-        db.Integer, db.ForeignKey("Questionnaires.id_questionnaire"), primary_key=True
+        db.Integer, db.ForeignKey("questionnaires.id_questionnaire"), primary_key=True
     )
     id_question = db.Column(
-        db.Integer, db.ForeignKey("Questions.id_question"), primary_key=True
+        db.Integer, db.ForeignKey("questions.id_question"), primary_key=True
     )
 
     # constructor

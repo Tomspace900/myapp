@@ -2,7 +2,7 @@ from configs.db_config import db
 
 
 class Questionnaire(db.Model):
-    __tablename__ = "Questionnaires"
+    __tablename__ = "questionnaires"
 
     id_questionnaire = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tally_id_questionnaire = db.Column(db.String(6))

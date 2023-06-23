@@ -19,7 +19,7 @@ def create_question(question, questionnaire_id):
     # Add question to database
     db.session.add(question)
     db.session.commit()
-    
+
     # Add question to own table
     Own(questionnaire_id, question.id_question)
 

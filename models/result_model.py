@@ -5,10 +5,10 @@ class Result(db.Model):
     __tablename__ = "results"
 
     id_question = db.Column(
-        db.Integer, db.ForeignKey("Questions.id_question"), primary_key=True
+        db.Integer, db.ForeignKey("questions.id_question"), primary_key=True
     )
     id_response = db.Column(
-        db.Integer, db.ForeignKey("Responses.id_response"), primary_key=True
+        db.Integer, db.ForeignKey("responses.id_response"), primary_key=True
     )
     results = db.Column(db.String(100))
 
@@ -17,4 +17,3 @@ class Result(db.Model):
         self.id_question = id_question
         self.id_response = id_response
         self.results = results
-

@@ -4,7 +4,7 @@ Backend made with Flask for the acquisition, manipulation and storage of data fr
 
 ## Structure
 
--   `index.py` : Main file
+-   `app.py` : Main file
 -   `controllers/` : API routes & logic
 -   `services/` : Database queries & logic
 -   `models/` : Database models
@@ -68,7 +68,7 @@ Replace the [variables] with your own values
 6. Start the app
 
 ```bash
-python3 api/index.py
+python3 app.py
 ```
 
 6. The server runs on http://127.0.0.1:5000
